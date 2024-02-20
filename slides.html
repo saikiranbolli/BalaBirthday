@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picture</title>
+    <style>
+        :root {
+  --duration: 20s;
+  --delay: 20s;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+  background-color: #141414;
+  margin: 0 auto;
+  padding: 0 1rem;
+  height: 100vh;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 25rem;
+}
+img {
+  --duration: 40s;
+  --name: float-up-1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 33vw;
+  transform: translateY(200vh);
+  animation: var(--name) var(--duration) linear infinite;
+  box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+img:nth-child(1) {
+  animation-delay: 0s;
+}
+img:nth-child(2) {
+  animation-delay: -3s;
+}
+img:nth-child(3) {
+  animation-delay: -6s;
+}
+img:nth-child(4) {
+  animation-delay: -15s;
+}
+img:nth-child(5) {
+  animation-delay: -12s;
+}
+img:nth-child(6) {
+  animation-delay: -15s;
+}
+img:nth-child(7) {
+  animation-delay: -18s;
+}
+img:nth-child(8) {
+  animation-delay: -21s;
+}
+img:nth-child(9) {
+  animation-delay: -24s;
+}
+img:nth-child(10) {
+  animation-delay: -27s;
+}
+img:nth-child(1) {
+  --name: float-up-1;
+  --duration: calc(20s * 1);
+  left: 0vw;
+  z-index: -1;
+}
+img:nth-child(2) {
+  --name: float-up-3;
+  --duration: calc(20s * 3);
+  left: 10vw;
+  z-index: -3;
+}
+img:nth-child(3) {
+  --name: float-up-2;
+  --duration: calc(20s * 2);
+  left: 90vw;
+  z-index: -2;
+}
+img:nth-child(4) {
+  --name: float-up-1;
+  --duration: calc(20s * 1);
+  left: 36vw;
+  z-index: -1;
+}
+img:nth-child(5) {
+  --name: float-up-3;
+  --duration: calc(20s * 3);
+  left: 62vw;
+  z-index: -3;
+}
+img:nth-child(6) {
+  --name: float-up-2;
+  --duration: calc(20s * 2);
+  left: 15vw;
+  z-index: -2;
+}
+img:nth-child(7) {
+  --name: float-up-2;
+  --duration: calc(20s * 2);
+  left: 55vw;
+  z-index: -2;
+}
+img:nth-child(8) {
+  --name: float-up-3;
+  --duration: calc(20s * 3);
+  left: -20vw;
+  z-index: -3;
+}
+img:nth-child(9) {
+  --name: float-up-1;
+  --duration: calc(20s * 1);
+  left: 68vw;
+  z-index: -1;
+}
+img:nth-child(10) {
+  --name: float-up-2;
+  --duration: calc(20s * 2);
+  left: 0vw;
+  z-index: -2;
+}
+@keyframes float-up-3 {
+  from {
+    transform: translateY(200vh) translateZ(-50vh);
+  }
+  to {
+    transform: translateY(-200vh) translateZ(-50vh);
+  }
+}
+@keyframes float-up-2 {
+  from {
+    transform: translateY(150vh) translateZ(-25vh);
+  }
+  to {
+    transform: translateY(-150vh) translateZ(-25vh);
+  }
+}
+@keyframes float-up-1 {
+  from {
+    transform: translateY(100vh);
+  }
+  to {
+    transform: translateY(-100vh);
+  }
+}
+
+/* ------------------------ Watermark (Please Ignore) ----------------------- */
+.watermark-ctr {
+  --clr-button-bg: #262626;
+  --clr-button: 49, 59, 244;
+  --clr-text: #ffffff;
+
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000;
+}
+.watermark-ctr a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+}
+.generate-button {
+  --generate-button-star-1-opacity: 0.25;
+  --generate-button-star-1-scale: 1;
+  --generate-button-star-2-opacity: 1;
+  --generate-button-star-2-scale: 1;
+  --generate-button-star-3-opacity: 0.5;
+  --generate-button-star-3-scale: 1;
+  --generate-button-dots-opacity: 0;
+  appearance: none;
+  outline: none;
+  border: none;
+  padding: 14px 24px 14px 20px;
+  border-radius: 29px;
+  margin: 0;
+  background-color: var(--clr-button-bg);
+  color: var(--clr-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 1;
+  transform: scale(var(--generate-button-scale, 1)) translateZ(0);
+  box-shadow: 0px 0px 120px var(--generate-button-shadow-wide, transparent),
+    0px 4px 12px rgba(0, 0, 0, 0.05), 0px 1px 2px rgba(0, 0, 0, 0.1),
+    inset 0px 1px 1px
+      var(--generate-button-shadow-inset, rgba(255, 255, 255, 0.04)),
+    0 0 0 var(--generate-button-shadow-outline, 0px)
+      rgba(var(--clr-button), 0.4);
+  transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s, color 0.3s;
+}
+.generate-button:before {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 20%;
+  height: 20px;
+  left: 20%;
+  bottom: -10px;
+  background: rgba(204, 204, 204, 0.4);
+  filter: blur(12.5px);
+  z-index: 2;
+  clip-path: inset(-200% -30% 10px -30% round 29px);
+  opacity: 0;
+  transition: opacity 0.4s;
+  transform: translateZ(0);
+}
+.generate-button span {
+  position: relative;
+  z-index: 1;
+  font-family: "Poppins", Arial;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.005em;
+  display: block;
+  user-select: none;
+}
+.generate-button .stroke {
+  mix-blend-mode: hard-light;
+}
+.generate-button .stroke svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-width: 0.75px;
+  stroke: #e2d9ff;
+  stroke-dasharray: 1.5 14;
+  stroke-dashoffset: 22;
+  opacity: 0;
+}
+.generate-button .stroke svg:nth-child(2) {
+  stroke-width: 1px;
+  stroke-opacity: 0.5;
+  filter: blur(3px);
+}
+
+.generate-button svg.icon {
+  width: 18px;
+  height: 20px;
+  margin-right: 10px;
+  fill: currentColor;
+}
+.generate-button svg.icon path:nth-child(1) {
+  opacity: var(--generate-button-star-1-opacity);
+  transform: scale(var(--generate-button-star-1-scale)) translateZ(0);
+  transform-origin: 25% 14.58%;
+}
+.generate-button svg.icon path:nth-child(2) {
+  opacity: var(--generate-button-star-2-opacity);
+  transform: scale(var(--generate-button-star-2-scale)) translateZ(0);
+  transform-origin: 60.42% 50%;
+}
+.generate-button svg.icon path:nth-child(3) {
+  opacity: var(--generate-button-star-3-opacity);
+  transform: scale(var(--generate-button-star-3-scale)) translateZ(0);
+  transform-origin: 25% 85.42%;
+}
+.generate-button:hover {
+  --generate-button-scale: 1.01;
+  --generate-button-shadow-wide: rgba(var(--clr-button), 0.4);
+  --generate-button-shadow-inset: rgba(255, 255, 255, 0.35);
+  --generate-button-shadow-outline: 3px;
+  color: var(--clr-text);
+  background-color: rgba(var(--clr-button));
+}
+.generate-button:hover .stroke svg {
+  animation: stroke 2s linear infinite;
+}
+.generate-button:hover:before {
+  opacity: 1;
+}
+.generate-button:hover span:before {
+  opacity: 0;
+}
+.generate-button:hover:active {
+  --generate-button-scale: 1.05;
+}
+@keyframes stroke {
+  0% {
+    opacity: 0;
+  }
+  25%,
+  75% {
+    opacity: 1;
+  }
+  95%,
+  100% {
+    stroke-dashoffset: 6;
+    opacity: 0;
+  }
+}
+
+    </style>
+</head>
+<body>
+<img src='./img_1.jpeg' alt=''>
+<img src='./img_2.jpeg' alt=''>
+<img src='./img_3.jpeg' alt=''>
+<img src='./img_4.jpeg' alt=''>
+<img src='./img_5.jpeg' alt=''>
+<img src='./img_6.jpeg' alt=''>
+<img src='./img_7.jpeg' alt=''>
+<img src='./img_8.jpeg' alt=''>
+<img src='./img_9.jpeg' alt=''>
+<img src='./img_10.jpeg' alt=''>
+<img src='./img_11.jpeg' alt=''>
+<img src='./img_12.jpeg' alt=''>
+<!-- <img src='./img_13.jpeg' alt=''> -->
+<img src='./img_14.jpeg' alt=''>
+<img src='./img_15.jpeg' alt=''>
+<img src='./img_16.jpeg' alt=''>
+<img src='./img_17.jpeg' alt=''>
+<!-- <img src='./img_18.jpeg' alt=''> -->
+
+<script src="./gsap.js"></script>
+<script>
+    /* ------------------------ Watermark (Please Ignore) ----------------------- */
+const createSVG = (width, height, className, childType, childAttributes) => {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+  const child = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    childType
+  );
+
+  for (const attr in childAttributes) {
+    child.setAttribute(attr, childAttributes[attr]);
+  }
+
+  svg.appendChild(child);
+
+  return { svg, child };
+};
+
+document.querySelectorAll(".generate-button").forEach((button) => {
+  const width = button.offsetWidth;
+  const height = button.offsetHeight;
+
+  const style = getComputedStyle(button);
+
+  const strokeGroup = document.createElement("div");
+  strokeGroup.classList.add("stroke");
+
+  const { svg: stroke } = createSVG(width, height, "stroke-line", "rect", {
+    x: "0",
+    y: "0",
+    width: "100%",
+    height: "100%",
+    rx: parseInt(style.borderRadius, 10),
+    ry: parseInt(style.borderRadius, 10),
+    pathLength: "30"
+  });
+
+  strokeGroup.appendChild(stroke);
+  button.appendChild(strokeGroup);
+
+  const stars = gsap.to(button, {
+    repeat: -1,
+    repeatDelay: 0.5,
+    paused: true,
+    keyframes: [
+      {
+        "--generate-button-star-2-scale": ".5",
+        "--generate-button-star-2-opacity": ".25",
+        "--generate-button-star-3-scale": "1.25",
+        "--generate-button-star-3-opacity": "1",
+        duration: 0.3
+      },
+      {
+        "--generate-button-star-1-scale": "1.5",
+        "--generate-button-star-1-opacity": ".5",
+        "--generate-button-star-2-scale": ".5",
+        "--generate-button-star-3-scale": "1",
+        "--generate-button-star-3-opacity": ".5",
+        duration: 0.3
+      },
+      {
+        "--generate-button-star-1-scale": "1",
+        "--generate-button-star-1-opacity": ".25",
+        "--generate-button-star-2-scale": "1.15",
+        "--generate-button-star-2-opacity": "1",
+        duration: 0.3
+      },
+      {
+        "--generate-button-star-2-scale": "1",
+        duration: 0.35
+      }
+    ]
+  });
+
+  button.addEventListener("pointerenter", () => {
+    gsap.to(button, {
+      "--generate-button-dots-opacity": "1",
+      duration: 0.5,
+      onStart: () => {
+        setTimeout(() => stars.restart().play(), 500);
+      }
+    });
+  });
+
+  button.addEventListener("pointerleave", () => {
+    gsap.to(button, {
+      "--generate-button-dots-opacity": "0",
+      "--generate-button-star-1-opacity": ".25",
+      "--generate-button-star-1-scale": "1",
+      "--generate-button-star-2-opacity": "1",
+      "--generate-button-star-2-scale": "1",
+      "--generate-button-star-3-opacity": ".5",
+      "--generate-button-star-3-scale": "1",
+      duration: 0.15,
+      onComplete: () => {
+        stars.pause();
+      }
+    });
+  });
+});
+
+</script>
+</body>
+</html>

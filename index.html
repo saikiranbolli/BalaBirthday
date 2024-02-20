@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Monoton");
+
+body {
+  font-family: Monoton;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-self: center;
+  background:linear-gradient(135deg, #160C23, #7B6762);
+  background-size: 100% 3100px;
+}
+
+.box {
+  height: 100vh;
+  justify-content: center;
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+  width: 100%;
+  height: 500px;
+  font-size: 3.5rem;
+  padding-top: 125px;
+  
+  p {
+    opacity:0;
+    color: rgba(255,255,255,0.8);
+  }
+}
+
+.bounce-me {
+  opacity:1 !important;
+  animation: bounce-in-top 1s both;
+}
+a{
+  text-decoration: none;
+}
+svg{
+  rotate: 180deg;
+  color: white;
+}
+@keyframes bounce-in-top {
+  0% {
+    -webkit-transform: translateY(-500px);
+    transform: translateY(-500px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    -webkit-transform: translateY(-65px);
+    transform: translateY(-65px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  72% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  81% {
+    -webkit-transform: translateY(-28px);
+    transform: translateY(-28px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  90% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  95% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="box"><p>Hi Nana</p>
+      <a href="./wish.html"> 
+      <svg viewBox="0 0 24 24" height="24" width="24" preserveAspectRatio="xMidYMid meet"
+      class="mb-2 p-1" version="1.1" x="0px" y="0px" enable-background="new 0 0 24 24">
+      <title>back</title>
+      <path fill="currentColor" d="M12,4l1.4,1.4L7.8,11H20v2H7.8l5.6,5.6L12,20l-8-8L12,4z">
+      </path>
+    </svg>
+  </a>
+</div>
+    <div>
+     
+    </div>
+    <script>
+        const myDemo = (function () {
+  const init = function () {
+    createObserver();
+  };
+
+  const createObserver = function () {
+    let options = {
+      root: null,
+      rootMargin: "100px",
+      threshold: 0.5
+    };
+
+    let observer = new IntersectionObserver(
+      function (entries, observer) {
+          handleIntersect(entries, observer); 
+        }, 
+      options);
+    
+    let targetElements = document.querySelectorAll(".box");
+
+    targetElements.forEach((targetElement) => {
+      observer.observe(targetElement);
+    });
+  };
+
+  const handleIntersect = function (entries, observer) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.children[0].classList.add("bounce-me");
+        observer.unobserve(entry.target);
+      }
+    });
+  };
+
+  return {
+    init: init
+  };
+})();
+
+myDemo.init();
+
+    </script>
+</body>
+</html>
